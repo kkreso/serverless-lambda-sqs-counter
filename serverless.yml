@@ -26,6 +26,12 @@ custom:
   prefix: ${self:custom.stage}-${self:service}
   sqs: ${self:custom.prefix}-messages
   dynamodbtable02: ${self:service}-${opt:stage, self:provider.stage}-02
+  client: 
+    bucketName: ${self:custom.prefix}-s3staticweb
+    distributionFolder: client/dist # (Optional) The location of your website. This defaults to client/dist
+
+plugins:
+  - serverless-finch
 
 provider:
   name: aws
