@@ -39,7 +39,6 @@ def trigcount(event, context):
             ':i': 1
         },
         UpdateExpression='add #counter :i',
-        # ReturnValues='UPDATED_NEW'
     )
 
     # Sending data to SQS
@@ -51,6 +50,7 @@ def decimal_default(obj):
     if isinstance(obj, decimal.Decimal):
         return int(obj)
     raise TypeError
+
 
 def send_to_sqs(data):
     q_name = os.environ['QUEUE_NAME']
@@ -73,7 +73,6 @@ def read_from_sqs_queue(queue):
 
 def process_sqs(event, context):
     read_from_sqs_queue(q)
-    print("-------------------End of process_sqs")
 
 
 def update_dynamodb_02(id, country, useragent):
